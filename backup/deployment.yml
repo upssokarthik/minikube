@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: env-printer
+  namespace: test-app-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: env-printer
+  template:
+    metadata:
+      labels:
+        app: env-printer
+    spec:
+      serviceAccountName: test-app-sa  # Replace with the name from service-account.yaml
+      containers:
+      - name: env-printer
+        image: uperformkarthick/env-printer:latest
+        env:
+        - name: EXAMPLE_ENV
+          value: "Hello, Kubernetes!"
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: secret.username
+        # envFrom:
+        #   - secretRef:
+        #     name: db-credentials
+        command: ["python", "/app/app.py"]

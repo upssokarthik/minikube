@@ -1,0 +1,5 @@
+- !grant
+  roles:
+  - !group apps
+  members:
+  - !group /data/myspace/jwt-apps

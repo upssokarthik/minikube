@@ -1,0 +1,3 @@
+- !grant
+  role: !group vault/Karthik-test-conjur/delegation/consumers
+  member: !host myspace/jwt-apps/system:serviceaccount:test-app-namespace:test-app-sa
