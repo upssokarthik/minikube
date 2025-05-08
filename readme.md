@@ -9,7 +9,30 @@ This is a sample configuration to test conjur kubernetes credential  integration
 2) kubectl
 3) jq -> This is just used to parse the json response, when kubectl returns json response
 
-## Steps to Deploy
+## Steps to follow in the conjur instance
+
+1. follow the steps in the link. Replace public keys from jwks.json file and issuer from issuer.txt. https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/k8s-ocp/k8s-jwt-authn.htm?tocpath=Authenticate%20workloads%7CSecure%20Kubernetes%7C_____2#ConfiguretheJWTauthenticator
+
+2. follow the steps in the below link.https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/k8s-ocp/cjr-k8s-jwt-sp-ic.htm?tocpath=Authenticate%20workloads%7CSecure%20Kubernetes%7CSet%20up%20applications%7CSecrets%20Provider%20for%20Kubernetes%7C_____1#SetupSecretsProviderasaninitcontainersidecar
+
+3. execute the below command to login to conjur.
+```
+conjur login
+```
+4. Execute the below command.
+```
+conjur policy load -f conjur/1-con-workload.yml -b data
+```
+5. execute the below command.
+```
+conjur policy load -f conjur/2-con-app-access.yml -b conjur/authn-jwt/dev-cluster
+```
+6. execute the below command.
+```
+conjur policy load -f conjur/3-grant-access.yml -b data
+```
+
+## Steps to follow in kubernetes cluster
 
 1. Build the Docker image:
    ```bash

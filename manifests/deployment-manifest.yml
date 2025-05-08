@@ -16,7 +16,7 @@ spec:
         app: env-printer
       annotations:
         conjur.org/container-mode: sidecar
-        conjur.org/secrets-refresh-interval: 10s
+        conjur.org/secrets-refresh-interval: 60s
     spec:
       serviceAccountName: test-app-sa
       containers:
