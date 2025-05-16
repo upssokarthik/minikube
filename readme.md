@@ -8,6 +8,8 @@ This is a sample configuration to test conjur kubernetes credential  integration
 1) minikube
 2) kubectl
 3) jq -> This is just used to parse the json response, when kubectl returns json response
+4) install helm using this URL https://helm.sh/docs/intro/install/
+
 
 ## Prepare environment
 
@@ -69,7 +71,7 @@ conjur policy load -f conjur/3-grant-access.yml -b data
 
 6. enable metrics-server and kubernetes dashboard. Optional but highly recommended to monitor the pods and get debug information.
 ```
-minikube addons metrics-server
+minikube addons enable metrics-server
 minikube dashboard
 ```
 7. Helm install in kubernetes to prepare golden config map
