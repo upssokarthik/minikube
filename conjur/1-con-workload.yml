@@ -2,14 +2,12 @@
   id: myspace/jwt-apps
   body:
     - !group
-  
     - &hosts
       - !host
         id: system:serviceaccount:test-app-namespace:test-app-sa
         annotations:
           authn-jwt/dev-cluster/kubernetes.io/namespace: test-app-namespace
           authn-jwt/dev-cluster/kubernetes.io/serviceaccount/name: test-app-sa
-
     - !grant
       role: !group
       members: *hosts
