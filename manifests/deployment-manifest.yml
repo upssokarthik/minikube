@@ -21,7 +21,7 @@ spec:
       serviceAccountName: test-app-sa
       containers:
         - name: env-printer
-          image: uperformkarthick/env-printer:latest
+          image: uperformkarthick/env-printer:x86
           envFrom:
           - secretRef:
               name: db-credentials

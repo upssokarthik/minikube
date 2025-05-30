@@ -30,7 +30,7 @@ spec:
       serviceAccountName: test-app-sa
       containers:
       - name: env-printer-file
-        image: uperformkarthick/env-printer:latest
+        image: uperformkarthick/env-printer:x86
         volumeMounts:
           - name: conjur-secrets
             mountPath: /opt/secrets/conjur

@@ -14,8 +14,9 @@ This is a sample configuration to test conjur kubernetes credential  integration
 ## Prepare environment
 
 1. Build the Docker image:
-   ```bash
-   docker build -t env-printer:latest .
+```
+docker build -t env-printer:latest .
+```
 
 2. command to create a minikube server with project volume service token.
 ```
@@ -48,6 +49,11 @@ minikube start
 1. follow the steps in the link. Replace public keys from jwks.json file and issuer from issuer.txt. https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/k8s-ocp/k8s-jwt-authn.htm?tocpath=Authenticate%20workloads%7CSecure%20Kubernetes%7C_____2#ConfiguretheJWTauthenticator
 
 2. follow the steps in the below link.https://docs.cyberark.com/conjur-cloud/latest/en/content/integrations/k8s-ocp/cjr-k8s-jwt-sp-ic.htm?tocpath=Authenticate%20workloads%7CSecure%20Kubernetes%7CSet%20up%20applications%7CSecrets%20Provider%20for%20Kubernetes%7C_____1#SetupSecretsProviderasaninitcontainersidecar
+
+- update certificate command line.
+```
+conjur variable set -i conjur/authn-jwt/dev-cluster/public-keys -v "{\"type\":\"jwks\", \"value\":$(cat jwks.json)}"
+```
 
 3. execute the below command to login to conjur.
 ```
@@ -104,7 +110,7 @@ kubectl apply -f manifests/service-account.yaml
 kubectl apply -f manifests/secret-access.yml
 kubectl apply -f manifests/service.yml
 ```
-10. Run deployment in kubernetes secret mode. (Currently it can update fresh secrets. But cannot update the secrets for some reason )
+10. Run deployment in kubernetes secret mode. 
 ```
 kubectl apply -f manifests/deployment-manifest.yml
 ```
