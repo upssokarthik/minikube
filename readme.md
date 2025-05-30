@@ -119,3 +119,8 @@ kubectl apply -f manifests/deployment-manifest.yml
 kubectl apply -f manifests/deployment-file.yaml
 ```
 
+## get a sample service account token command.
+```
+kubectl -n test-app-namespace create token admin-user
+```
+
