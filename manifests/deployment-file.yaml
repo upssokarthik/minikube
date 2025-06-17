@@ -29,32 +29,32 @@ spec:
     spec:
       serviceAccountName: test-app-sa
       containers:
-      - name: env-printer-file
-        image: uperformkarthick/env-printer:x86
-        volumeMounts:
-          - name: conjur-secrets
-            mountPath: /opt/secrets/conjur
-            readOnly: true
-      - name: cyberark-secrets-provider-for-k8s
-        image: 'cyberark/secrets-provider-for-k8s:latest'
-        imagePullPolicy: Always
-        volumeMounts:
-        - name: conjur-status
-          mountPath: /conjur/status
-        - name: podinfo
-          mountPath: /conjur/podinfo
-        - name: conjur-secrets
-          mountPath: /conjur/
-        - name: jwt-token
-          mountPath: /var/run/secrets/tokens
-        env:
-          - name: MY_POD_NAMESPACE
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-        envFrom:
-          - configMapRef:
-              name: conjur-connect
+        - name: env-printer-file
+          image: uperformkarthick/env-printer:x86
+          volumeMounts:
+            - name: conjur-secrets
+              mountPath: /opt/secrets/conjur
+              readOnly: true
+        - name: cyberark-secrets-provider-for-k8s
+          image: 'cyberark/secrets-provider-for-k8s:latest'
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: conjur-status
+              mountPath: /conjur/status
+            - name: podinfo
+              mountPath: /conjur/podinfo
+            - name: conjur-secrets
+              mountPath: /conjur/
+            - name: jwt-token
+              mountPath: /var/run/secrets/tokens
+          env:
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          envFrom:
+            - configMapRef:
+                name: conjur-connect
       volumes:
         - name: conjur-status
           emptyDir:
