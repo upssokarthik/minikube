@@ -23,23 +23,23 @@ spec:
         - name: env-printer
           image: uperformkarthick/env-printer:x86
           envFrom:
-          - secretRef:
-              name: db-credentials
+            - secretRef:
+                name: db-credentials
           command: ["python", "/app/app.py"]
         - image: 'cyberark/secrets-provider-for-k8s:latest'
           imagePullPolicy: Always
           name: cyberark-secrets-provider-for-k8s
           volumeMounts:
-          - name: conjur-status
-            mountPath: /conjur/status
-          - name: jwt-token
-            mountPath: /var/run/secrets/tokens
-          - mountPath: /run/conjur
-            name: conjur-access-token
-          - mountPath: /etc/conjur/ssl
-            name: conjur-certs
-          - mountPath: /conjur/podinfo
-            name: podinfo
+            - name: conjur-status
+              mountPath: /conjur/status
+            - name: jwt-token
+              mountPath: /var/run/secrets/tokens
+            - mountPath: /run/conjur
+              name: conjur-access-token
+            - mountPath: /etc/conjur/ssl
+              name: conjur-certs
+            - mountPath: /conjur/podinfo
+              name: podinfo
           env:
             - name: LOG_TRACES
               value: "true"
@@ -78,8 +78,8 @@ spec:
         - downwardAPI:
             defaultMode: 420
             items:
-            - fieldRef:
-                apiVersion: v1
-                fieldPath: metadata.annotations
-              path: annotations
+              - fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.annotations
+                path: annotations
           name: podinfo
